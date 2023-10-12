@@ -11,11 +11,11 @@ import {
 import { useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
 import background from "../images/animation.gif";
-import "../index.css"
+import "../index.css";
 
-function ViewAttendance({enrollmentno,subject,studentAttendance}) {
+function ViewAttendance({ enrollmentno, subject, studentAttendance }) {
   const [checkedState, setCheckedState] = useState({});
-  
+
   const [updateAttendance, { isLoading: isUpdateLoding }] =
     useUpdateAttendanceMutation();
 
@@ -30,12 +30,12 @@ function ViewAttendance({enrollmentno,subject,studentAttendance}) {
   };
 
   useEffect(() => {
-      const initialCheckedState = {};
-      studentAttendance.attendance.forEach((item) => {
-        const key = Object.keys(item)[0];
-        initialCheckedState[key] = item[key] === 1;
-      });
-      setCheckedState(initialCheckedState);
+    const initialCheckedState = {};
+    studentAttendance.attendance.forEach((item) => {
+      const key = Object.keys(item)[0];
+      initialCheckedState[key] = item[key] === 1;
+    });
+    setCheckedState(initialCheckedState);
   }, [studentAttendance]);
 
   const onUpdateAttendance = (date, checked) => {
@@ -113,10 +113,7 @@ function ViewAttendance({enrollmentno,subject,studentAttendance}) {
         top="50%"
         left="18%"
       >
-        <Box className="scrollview"
-          height="50vh"
-          >
-            
+        <Box className="scrollview" height="50vh">
           {studentAttendance.attendance.map((items, index) => {
             const key = Object.keys(items)[0];
             const isChecked = checkedState[key];
